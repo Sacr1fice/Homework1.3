@@ -1,6 +1,7 @@
 import org.junit.jupiter.api.Test;
 
 import static io.restassured.RestAssured.given;
+import static org.hamcrest.Matchers.equalTo;
 
 public class PostmanEchoTest {
     @Test
@@ -8,12 +9,12 @@ public class PostmanEchoTest {
         given()
                 .baseUri("https://postman-echo.com")
                 .contentType("text/plain; charset=UTF-8")
-                .body("some data")
+                .body("some data123")
                 .when()
                 .post("/post")
                 .then()
                 .statusCode(200)
-                .body(/* --> ваша проверка здесь <-- */)
+                .body("data", equalTo("some data123"))
         ;
     }
 
